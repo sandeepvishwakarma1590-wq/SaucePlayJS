@@ -3,22 +3,36 @@ pipeline {
  agent any
 
  tools {
-   nodejs 'node18'
+     nodejs 'node18'
  }
 
  stages {
 
- stage('Install'){
-   steps{
-     bat 'npm install'
-   }
+     stage('Install Dependencies') {
+         steps {
+             bat 'npm install'
+         }
+     }
+
+     stage('Install Playwright Browsers') {
+         steps {
+             bat 'npx playwright install'
+         }
+     }
+
+     stage('Run Tests') {
+         steps {
+             bat 'npx playwright test'
+         }
+     }
+
  }
 
- stage('Run Tests'){
-   steps{
-     bat 'npm test'
-   }
- }
+ post {
+
+     always {
+         archiveArtifacts artifacts: 'playwright-report/**/*', allowEmptyArchive: true
+     }
 
  }
 
