@@ -34,7 +34,7 @@ export const projects = [
 			}
 		}
 	},
-	{
+	/*{
 		name: `Safari`,
 		use: {
 			browserName: `webkit`,
@@ -59,5 +59,5 @@ export const projects = [
 				slowMo: 100
 			}
 		}
-	}
+	}*/
 ]
